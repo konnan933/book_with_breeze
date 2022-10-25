@@ -35,4 +35,11 @@ Route::middleware(['auth.basic'])->group(function () {
     Route::get('/copy/list', [CopyController::class, 'listView']);
 });
 
+Route::middleware( ['admin'])->group(function () {
+    Route::apiResource('/users', UserController::class);
+});
+
+Route::apiResource('/api/copies', CopyController::class);
+Route::apiResource('/api/books', BookController::class);
+
 require __DIR__.'/auth.php';
